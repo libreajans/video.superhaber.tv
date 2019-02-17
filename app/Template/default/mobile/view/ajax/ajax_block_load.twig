@@ -1,0 +1,61 @@
+<script>
+	$(document).ready(function()
+	{
+		//ilk sayfayı php ile yüklediğimiz için
+		//ikinci sayfadan yüklemeye başlıyoruz
+		var page_count		= 2;
+		var loading 		= false;
+		var total_page		= {{content_list_pages}}+1;
+
+		$('#loadMore').click(function()
+		{
+			//load işleminde hata yoksa ve henüz toplam sayfa sayısına ulaşmamış isek
+			if(page_count <= total_page && loading==false)
+			{
+				//loading değerimizi true olarak düzenleyelim
+				loading = true;
+				$('#loadMore').html('<img width="16" height="11" src="{{G_IMGLINK_APP}}loader.gif" alt="Yükleniyor" />');
+				//içerikleri getirelim
+				{%if type == "cat" %}
+					$.post('{{LINK_AJAX}}',{'type': "cat", 'id': {{id}}, 'pg': page_count}, function(data)
+				{%endif %}
+				{%if type == "etiket" %}
+					$.post('{{LINK_AJAX}}',{'type': "etiket", 'key': "{{etiket}}", 'pg': page_count}, function(data)
+				{%endif %}
+				{%if type == "index" %}
+					$.post('{{LINK_AJAX}}',{'type': "index", 'pg': page_count}, function(data)
+				{%endif %}
+
+				{
+					//içerikleri ekleyelim
+					$("#results").append(data);
+					//sayfa sayısını artıralım
+					page_count++;
+					//loading değerini false olarak düzenleyelim
+					loading = false;
+					$('#loadMore').html('<img width="21" height="11" src="{{G_IMGLINK_APP}}more.png" alt="Devamını Gör"/>');
+
+					//lazy load yeniden ateşleyelim
+					$(window).on('ajaxComplete', function()
+					{
+						setTimeout(function()
+						{
+							$(window).lazyLoadXT();
+						}, 50);
+					});
+
+				}).fail(function(xhr, ajaxOptions, thrownError)
+				{
+					//hata var mı?
+					//HTTP error olarak dönelim
+					//alert(thrownError);
+					loading = false;
+				});
+			}
+			else
+			{
+				$('#loadMore').html('Bitti');
+			}
+		});
+	});
+</script>

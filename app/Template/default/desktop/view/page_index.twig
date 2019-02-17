@@ -1,0 +1,120 @@
+<div id="video-header">
+	<ul>
+		<li class="video-manset">
+			<a href="{{index_manset[0].content_url}}">
+				<figure class="big-video-header-image">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{index_manset[0].content_image_url}}"
+						alt="{{index_manset[0].content_title}}"
+						width="650" height="370"
+					/>
+					<figcaption class="big-video-header-image-caption">
+						<div class="big-caption-play"></div>
+						<div class="big-caption-title">{{index_manset[0].content_title}}</div>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+		<li>
+			<a href="{{index_manset[1].content_url}}">
+				<figure class="video-manset-image">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{index_manset[1].content_image_url}}"
+						alt="{{index_manset[1].content_title}}"
+						width="320" height="182"
+					/>
+					<figcaption class="video-manset-image-caption">
+						<div class="video-manset-play"></div>
+						<div class="video-manset-title">{{index_manset[1].content_title}}</div>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+		<li>
+				<a href="{{index_manset[2].content_url}}">
+				<figure class="video-manset-image">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{index_manset[2].content_image_url}}"
+						alt="{{index_manset[2].content_title}}"
+						width="320" height="182"
+					/>
+					<figcaption class="video-manset-image-caption">
+						<div class="video-manset-play"></div>
+						<div class="video-manset-title">{{index_manset[2].content_title}}</div>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+	</ul>
+</div>
+
+
+<main id="main-video-container">
+	<div class="videos-content">
+		<ul class="videos-box">
+			{% for i in 3..6 %}
+				<li>
+					<a href="{{index_manset[i].content_url}}">
+						<figure class="videos-box-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{index_manset[i].content_image_url}}"
+								alt="{{index_manset[i].content_title}}"
+								width="232" height="130"
+							/>
+							<figcaption class="videos-box-caption"></figcaption>
+						</figure>
+						<div class="videos-box-info">
+							<div class="videos-box-title">{{index_manset[i].content_title}}</div>
+							<div class="videos-box-watch">{{index_manset[i].content_view_f}} görüntülenme</div>
+							<div class="videos-box-date">{{index_manset[i].content_time_f}}</div>
+						</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="videos-content">
+		<div class="content-title">
+			<span class="cat-202"><i class="icon icon-megaphone">&#xe815;</i> Popüler </span>
+		</div>
+		<ul class="videos-box">
+			{% for item in index_most_view %}
+				<li>
+					<a href="{{item.content_url|raw}}">
+						<figure class="videos-box-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{item.content_image_url}}"
+								alt="{{item.content_title}}"
+								width="232" height="130"
+								/>
+							<figcaption class="videos-box-caption"></figcaption>
+						</figure>
+						<div class="videos-box-info">
+							<div class="videos-box-title">{{item.content_title}}</div>
+							<div class="videos-box-watch">{{item.content_view_f}} görüntülenme</div>
+							<div class="videos-box-date">{{item.content_time_f}}</div>
+						</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<div class="videos-content">
+		<div class="content-title">
+			<span class="cat-201"> <i class="icon">&#xe814;</i> Güncel</span>
+		</div>
+		<ul class="videos-box" id="results">
+			{%include "ajax/ajax_block_content.twig" %}
+		</ul>
+	</div>
+</main>
+
+{%include "ajax/ajax_block_load.twig" with {type:"index"}%}
+
+<div id="loadMore" class="load-more"><img width="21" height="11" src="{{G_IMGLINK_APP}}more.png" alt="Devamını Gör"/></div>

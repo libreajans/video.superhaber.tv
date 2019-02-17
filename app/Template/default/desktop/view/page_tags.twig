@@ -1,0 +1,10 @@
+<main id="main-video-container">
+	<div class="videos-content">
+		<div class="content-title"><span class="cat-201">{{key}}</span> etiketi için bulunan sonuçlar</div>
+		<ul class="videos-box" id="results">
+			{%include "ajax/ajax_block_content.twig" %}
+		</ul>
+	</div>
+</main>
+<div id="loadMore" class="load-more"><img width="21" height="11" src="{{G_IMGLINK_APP}}more.png" alt="Devamını Gör"/></div>
+{%include "ajax/ajax_block_load.twig" with {type:"etiket", etiket:key}%}

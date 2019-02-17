@@ -1,0 +1,12 @@
+<main id="main-video-container">
+	<div class="videos-content">
+		{% if keyword != '' %}
+			<div class="content-title"><span class="cat-201">{{keyword}}</span> araması için bulunan sonuçlar</div>
+		{% else %}
+			<div class="content-title">Aramak istediğiniz kelimeyi giriniz</div>
+		{% endif %}
+		<ul class="videos-box" id="results">
+			{%include "ajax/ajax_block_content.twig" %}
+		</ul>
+	</div>
+</main>

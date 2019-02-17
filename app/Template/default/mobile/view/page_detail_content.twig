@@ -1,0 +1,174 @@
+{% if content.content_duration > 0%}
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "VideoObject",
+			"name": "{{content.content_title}}",
+			"description": "{{content.content_text|striptags}}",
+			"thumbnailUrl": "{{content.content_image_url}}",
+			"uploadDate": "{{content.content_time|date("Y-m-d")}}T{{content.content_time|date("H:i:s+02:00")}}",
+			"duration": "{{content_duration}}",
+			"contentUrl": "{{content.content_url}}",
+			"embedUrl": "{{content.content_embed_url}}",
+			"interactionCount": "{{content.content_view}}"
+		}
+	</script>
+{% endif %}
+<main class="mobile-detail">
+	<h3 class="mobile-detail-title">{{content.content_title}}</h3>
+	<div class="kaynak">{{content.content_time|date("d.m.Y")}} tarihinde yayınlandı</div>
+	<div class="kaynak">{{content.content_view_f}} görüntülenme</div>
+	<div class="mobile-detail-video">
+		<iframe
+			src="{{content.content_html5_embed_url}}/300x230/"
+			width="300"
+			height="230"
+			scrolling="no"
+			frameborder="0"
+			marginheight="0"
+			marginwidth="0"
+			allowfullscreen
+			webkitallowfullscreen
+			mozallowfullscreen
+			oallowfullscreen
+			msallowfullscreen>
+		</iframe>
+	</div>
+
+	<div class="mobile-text">
+		{{content_text|raw}}
+	</div>
+	<div class="mobile-tags">
+		<li><strong>Etiketler : </strong></li>
+		<li>
+			<a title="{{content.content_cat_name}}" href="{{content.content_cat_url}}">{{content.content_cat_name}}</a>
+		</li>
+		{% if array_tags[0] != '' %}
+			{% for item in array_tags %}
+				<li><a title="{{item}}" href="{{LINK_TAGS}}{{item|url_encode}}">{{item}}</a></li>
+			{% endfor %}
+		{% endif %}
+	</div>
+	<ul class="mobile-share-button">
+		<li>
+			<a target="_blank" rel="external nofollow noopener noreferrer" title="Facebook'ta Paylaş" href="http://www.facebook.com/sharer/sharer.php?u={{site_canonical}}&amp;title={{content.content_title_inside|url_encode}}">
+				<img src="{{G_IMGLINK_APP}}lazy.png" data-src="{{G_IMGLINK_APP}}social/facebook.png" alt="Facebook'ta Paylaş" width="40" height="40">
+			</a>
+		</li>
+		<li>
+			<a target="_blank" rel="external nofollow noopener noreferrer" title="Twitter'da Paylaş" href="https://twitter.com/intent/tweet?hashtags={{social_media.twitter_tag}}&amp;original_referer={{site_canonical}}&amp;text={{content.content_title_inside|url_encode}}&amp;tw_p=tweetbutton&amp;url={{site_canonical}}&amp;via={{social_media.twitter_name}}">
+				<img src="{{G_IMGLINK_APP}}lazy.png" data-src="{{G_IMGLINK_APP}}social/twitter.png" alt="Twitter'da Paylaş" width="40" height="40">
+			</a>
+		</li>
+		<li>
+			<a target="_blank" rel="external nofollow noopener noreferrer" title="Google+'da Paylaş" href="https://plus.google.com/share?url={{site_canonical}}">
+				<img src="{{G_IMGLINK_APP}}lazy.png" data-src="{{G_IMGLINK_APP}}social/google+.png" alt="Google Plus'da Paylaş" width="40"
+					 height="40">
+			</a>
+		</li>
+		<li>
+			<a rel="external nofollow" title="Whatsapp'da Paylaş" href="whatsapp://send?text={{content.content_title}} {{site_canonical}}">
+				<img src="{{G_IMGLINK_APP}}lazy.png" data-src="{{G_IMGLINK_APP}}social/whatsapp.png" alt="Whatsapp'ta Paylaş" width="40" height="40">
+			</a>
+		</li>
+	</ul>
+
+	{% if commented != 1 %}
+		{% if content['content_comment_status'] == 1 %}
+			<div class="mobile-comment-write">
+				<div class="mobile-comment-title">Yorum Yap</div>
+				<form method="post" action="{{form_action}}" name="form1" id="form1">
+					<input type="hidden" name="comment_add" value="1"/>
+					<textarea name="yorum" required class="mobile-message-input" placeholder="Yorumunuz"></textarea>
+					<input type="text" name="isim" required class="mobile-input" placeholder="Adınız Soyadınız">
+					<button class="mobile-comment-button">Yorum Ekle</button>
+				</form>
+			</div>
+		{% else %}
+			<div class="mobile-comment-message">Bu haber yorumlara kapalıdır.</div>
+		{% endif %}
+	{% else %}
+		<div class="mobile-comment-message">Yorumunuz kayıt altına alınmıştır.</div>
+	{% endif %}
+
+	{% if comment_add == 1 and commented != 1%}
+		<div class="mobile-comment-message">Yorum için teşekkür ederiz.</div>
+	{% endif %}
+
+	{% if comment_list|length > 0%}
+		<div class="mobile-comments-wrapper">
+			<div class="mobile-comment-title">Yorumlar</div>
+			<ul class="mobile-comment-list">
+				{% for item in comment_list %}
+					<li>
+						<div class="mobile-comment-user">
+							{{item.comment_author}}
+							<span class="mobile-comment-date">{{item.create_time|date("Y.m.d H:i")}}</span>
+						</div>
+						<div class="mobile-comment-text">{{item.comment_text|raw}}</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif%}
+	<div class="mobile-other-news">
+		{%if content['others']["pre_link"] != "" %}
+			<div class="before-news">
+				<a href="{{content['others']["pre_link"]}}">
+					<figure class="mobile-other-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{content['others']["pre_image"]}}"
+							width="100%"
+							height="auto"
+							alt="{{content['others']["pre_title"]}}"
+						/>
+					</figure>
+					<h5 class="mobile-other-title">{{content['others']["pre_title"]}}</h5>
+					<div class="before-icon">Önceki Haber</div>
+				</a>
+			</div>
+		{% endif %}
+		{%if content['others']["next_link"] != "" %}
+			<div class="after-news">
+				<a href="{{content['others']["next_link"]}}">
+					<figure class="mobile-other-image">
+						<img
+							src="{{G_IMGLINK_APP}}lazy.png"
+							data-src="{{content['others']["next_image"]}}"
+							width="100%"
+							height="auto"
+							alt="{{content['others']["next_title"]}}"
+						/>
+					</figure>
+					<h5 class="mobile-other-title">{{content['others']["next_title"]}}</h5>
+					<div class="after-icon">Sonraki Haber</div>
+				</a>
+			</div>
+		{% endif %}
+	</div>
+
+	{% if content_benzer_list|length > 0%}
+		<div class="mobile-title"><span class="cat-203">Benzer Videolar</span></div>
+		<ul class="mobile-block">
+			{% for item in content_benzer_list %}
+				<li>
+					<a rel="nofollow" href="{{item.content_url}}" title="{{item.content_title}}">
+						<figure class="mobile-block-image">
+							<img
+									src="{{G_IMGLINK_APP}}lazy.png"
+									data-src="{{item.content_thumb_url}}"
+									width="100%"
+									height="auto"
+									alt="{{item.content_title}}"
+							/>
+						</figure>
+						<div class="mobile-block-title">{{item.content_title}}</div>
+						<div class="mobile-block-view">{{ item.content_view_f }} görüntülenme</div>
+						<div class="mobile-block-date">{{ item.content_time_f }}</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+</main>

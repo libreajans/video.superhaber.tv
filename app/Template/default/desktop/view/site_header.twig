@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<!--
+Yazılım: İber Medya
+Tasarım: İber Medya
+Copyright: İber Medya & SuperHaber.tv
+-->
+<html lang="tr">
+	<head>
+		<!-- Uyumluluk kipini kapatmaya zorla -->
+		<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"><![endif]-->
+		<!--[if IE 9]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"><![endif]-->
+		<!--[if IE 10]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"><![endif]-->
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+		<meta charset="UTF-8"/>
+		<meta name="robots" content="index, follow"/>
+		<link rel="dns-prefetch" href="http://cdn-video.superhaber.tv"/>
+
+		{% if ST_ONLINE == 1 %}
+			{# Google Analitik Kodu #}
+			<script>
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+				ga('create', 'UA-53462249-1', 'superhaber.tv');
+				ga('send', 'pageview');
+			</script>
+			{#---[-]--- google analistik kodu ---#}
+
+			<!-- Start Alexa Certify Javascript -->
+			<script type="text/javascript">
+				_atrk_opts = { atrk_acct:"cAyVo1IWhd10uW", domain:"superhaber.tv",dynamic: true};
+				(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+			</script>
+			<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=cAyVo1IWhd10uW" style="display:none" height="1" width="1" alt="" /></noscript>
+			<!-- End Alexa Certify Javascript -->
+		{% endif %}
+
+		{#---[+]--- Facebook Open Graph API ---#}
+		<meta property="og:site_name" content="{{L.pIndex_Company}}"/>
+		<meta property="og:title" content="{{content_metatitle}}"/>
+		<meta property="og:image" content="{{content_metaimage}}"/>
+		<meta property="og:description" content="{{content_metadesc}}"/>
+		<meta property="og:url" content="{{site_canonical}}"/>
+		{#---[-]--- Facebook Open Graph API ---#}
+
+		{#---[+]--- Twitter API ---#}
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta name="twitter:site" content="@{{social_media.twitter_name}}"/>
+		<meta name="twitter:title" content="{{content_metatitle}}"/>
+		<meta name="twitter:description" content="{{content_metadesc}}"/>
+		<meta name="twitter:image:src" content="{{content_metaimage}}"/>
+		<meta name="twitter:url" content="{{site_canonical}}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		{#---[+]--- Twitter API ---#}
+
+		<meta name="keywords" content="{% if content_metatags != "" %}{{content_metatags}},{%endif%} {{site_keywords}}"/>
+		<meta name="description" content="{{content_metadesc}}"/>
+
+		{#---[+]--- Favicon ---#}
+		<link rel="dns-prefetch" href="http://cdn-video.superhaber.tv"/>
+		<link rel="shortcut icon" type="image/png" href="{{G_IMGLINK_APP}}favicon.png" sizes="32x32"/>
+		<link rel="canonical" href="{{site_canonical}}"/>
+		<link rel="publisher" href="{{social_media.google}}"/>
+		{#---[-]--- Favicon ---#}
+
+		{#---[+]--- RSS Linkleri ---#}
+		<link rel="alternate" type="application/rss+xml" title="{{L.pIndex_Company}} Video RSS Beslemeleri" href="{{LINK_FEED}}"/>
+		{#---[-]--- RSS Linkleri ---#}
+
+		{#---[+]--- önce css ---#}
+		<link rel="stylesheet" media="screen" href="{{G_CSSLINK}}desktop_10.css"/>
+		{#---[-]--- önce css ---#}
+
+		{#---[+]--- sonra js ---#}
+		<script src="{{G_JSLINK}}vendors/jquery.min.js"></script>
+		<script src="{{G_JSLINK}}vendors/jquery.lazyloadxt.min.js"></script>
+		<script src="{{G_JSLINK}}vendors/jquery.sticky.js"></script>
+		<script src="{{G_JSLINK}}main_10.js"></script>
+		{#---[-]--- sonra js ---#}
+
+		{#---[+]--- Mikro Data ---#}
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Organization",
+			"url": "{{LINK_INDEX}}",
+			"logo": "{{G_IMGLINK_APP}}logo_sh.png"
+		}
+		</script>
+
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			"name" : "Video {{L.pIndex_Company}}",
+			"alternateName" : "video.superhaber.tv",
+			"url": "{{LINK_INDEX}}",
+			"sameAs" : [
+				"{{social_media.facebook}}",
+				"{{social_media.twitter}}",
+				"{{social_media.google}}",
+				"{{social_media.instagram}}"
+			],
+			"potentialAction":
+			{
+				"@type": "SearchAction",
+				"target": "{{LINK_SEARCH}}?search={search}",
+				"query-input": {
+					"@type": "PropertyValueSpecification",
+					"valueRequired": true,
+					"valueMaxlength": 100,
+					"valueName": "search"
+				}
+			}
+		}
+		</script>
+		{#---[-]--- Mikro Data ---#}
+
+		<title>{{site_title}}</title>
+	</head>
+	<body>
+		{% if sayfaadi == 'index' %}
+			<h1 class="hideMe">{{L.pIndex_Company}}</h1>
+			<h2 class="hideMe">{{L.pIndex_CompanyDesc}}</h2>
+		{% else %}
+			<h1 class="hideMe">{{content_metatitle}}</h1>
+			<h2 class="hideMe">{{content_metadesc}}</h2>
+		{% endif %}
+		<header>
+			<div class="header-full-top">
+				<div id="header-up">
+					<div id="logo">
+						<a href="{{LINK_INDEX}}">
+							<img src="{{G_IMGLINK_APP}}logo.png" width="300" height="59" alt="Super Video">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="header-full-bottom">
+				<nav>
+					<ul>
+						<li{% if sayfaadi == 'index' %} class="active"{% endif %}> <a title="Ana Sayfa" href="{{LINK_INDEX}}">Anasayfa</a> </li>
+						<li{% if sayfaadi == 'cat' and id == 201 %} class="active"{% endif %}> <a href="{{cat_url[201]}}" title="{{cat_name[201]}}">{{cat_name[201]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 202 %} class="active"{% endif %}> <a href="{{cat_url[202]}}" title="{{cat_name[202]}}">{{cat_name[202]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 203 %} class="active"{% endif %}> <a href="{{cat_url[203]}}" title="{{cat_name[203]}}">{{cat_name[203]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 204 %} class="active"{% endif %}> <a href="{{cat_url[204]}}" title="{{cat_name[204]}}">{{cat_name[204]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 205 %} class="active"{% endif %}> <a href="{{cat_url[205]}}" title="{{cat_name[205]}}">{{cat_name[205]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 206 %} class="active"{% endif %}> <a href="{{cat_url[206]}}" title="{{cat_name[206]}}">{{cat_name[206]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 207 %} class="active"{% endif %}> <a href="{{cat_url[207]}}" title="{{cat_name[207]}}">{{cat_name[207]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 208 %} class="active"{% endif %}> <a href="{{cat_url[208]}}" title="{{cat_name[207]}}">{{cat_name[208]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 209 %} class="active"{% endif %}> <a href="{{cat_url[209]}}" title="{{cat_name[208]}}">{{cat_name[209]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 210 %} class="active"{% endif %}> <a href="{{cat_url[210]}}" title="{{cat_name[210]}}">{{cat_name[210]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 211 %} class="active"{% endif %}> <a href="{{cat_url[211]}}" title="{{cat_name[211]}}">{{cat_name[211]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 212 %} class="active"{% endif %}> <a href="{{cat_url[212]}}" title="{{cat_name[212]}}">{{cat_name[212]}}</a></li>
+						<li{% if sayfaadi == 'cat' and id == 213 %} class="active"{% endif %}> <a href="{{cat_url[213]}}" title="{{cat_name[213]}}">{{cat_name[213]}}</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="search-wrapper">
+				<div class="grid-12">
+					<form action="{{LINK_SEARCH}}" method="post">
+						<input  type="search" id="search" name="search" class="input-search" placeholder="Ara">
+						<button class="search-button"><img src="{{G_IMGLINK_APP}}icons/search.png" alt="Video Ara"></button>
+					</form>
+				</div>
+			</div>
+		</header>

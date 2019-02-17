@@ -1,0 +1,177 @@
+<div class="box box-info">
+	<div class="box-header">
+		<h1 class="box-title">Tarih: {{data_time}}</h1>
+	</div>
+	<div class="box-body">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<h1>{{read_total['view']|number_format(0, ',', '.')}}</h1>
+						<p>Toplam Gösterim</p>
+					</div>
+					<div class="icon"><i class="ion ion-eye"></i></div>
+					<p class="small-box-footer ion-eye" style="text-align:right; padding-right:5px;">&nbsp;</p>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<h1>{{read_total['real_view']|number_format(0, ',', '.')}}</h1>
+						<p>REEL Gösterim</p>
+					</div>
+					<div class="icon"><i class="ion ion-eye"></i></div>
+					<p class="small-box-footer ion-eye" style="text-align:right; padding-right:5px;">&nbsp;</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<h1>{{total_content['toplam']|number_format(0, ',', '.')}}</h1>
+						<p>Toplam Haber</p>
+					</div>
+					<div class="icon"><i class="ion ion-document"></i></div>
+					<p class="small-box-footer ion-document" style="text-align:right; padding-right:5px;">&nbsp;</p>
+				</div>
+			</div>
+			
+			<div class="col-lg-3">
+				<div class="small-box bg-green">
+					<div class="inner">
+						<h1>{{total_content['aktif']|number_format(0, ',', '.')}}</h1>
+						<p>Aktif Haber</p>
+					</div>
+					<div class="icon"><i class="ion ion-document"></i></div>
+					<p class="small-box-footer ion-checkmark-circled" style="text-align:right; padding-right:5px;">&nbsp;</p>
+				</div>
+			</div>
+
+			<div class="col-lg-3">
+				<div class="small-box bg-light-blue">
+					<div class="inner">
+						<h1>{{total_content['taslak']|number_format(0, ',', '.')}}</h1>
+						<p>Taslak Haber</p>
+					</div>
+					<div class="icon"><i class="ion ion-document"></i></div>
+					<p class="small-box-footer ion-help-circled" style="text-align:right; padding-right:5px;">&nbsp;</p>
+				</div>
+			</div>
+			
+			<div class="col-lg-3">
+				<div class="small-box bg-yellow">
+					<div class="inner">
+						<h1>{{total['comment']|number_format(0, ',', '.')}}</h1>
+						<p>Toplam Yorum</p>
+					</div>
+					<div class="icon"><i class="ion ion-android-hangout"></i></div>
+					<p class="small-box-footer ion-android-hangout" style="text-align:right; padding-right:5px;">&nbsp;</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="box box-solid box-n collapsed-box">
+	<div class="box-header">
+		<h1 class="box-title"><i class="ion ion-stats-bars"></i> Kategori Bazında Toplam Haber Sayıları</h1>
+		<div class="box-tools pull-right">
+			<button data-widget="collapse" class="btn btn-primary btn-sm"><i class="ion ion-minus"></i></button>
+		</div>
+	</div>
+	<div class="box-body" style="display: none;">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<th><i class="ion ion-stats-bars"></i> Kategori Bazında Toplam Haber Sayıları</th>
+				<th class="right" width="85">Toplam </th>
+				<th class="right" width="85">Aktif</th>
+				<th class="right" width="85">Pasif </th>
+				<th class="right" width="85">Taslak</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Toplam</td>
+					<td class="right">{{total_content['toplam']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{total_content['aktif']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{total_content['pasif']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{total_content['taslak']|number_format(0, ',', '.')}}</td>
+				</tr>
+				{% for key, items in cat_name %}
+				<tr>
+					<td>{{cat_name[key]}}</td>
+					<td class="right">{{cat_content[key]['toplam']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{cat_content[key]['aktif']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{cat_content[key]['pasif']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{cat_content[key]['taslak']|number_format(0, ',', '.')}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+		
+<div class="box box-solid box-n collapsed-box">
+	<div class="box-header">
+		<h1 class="box-title"><i class="ion ion-arrow-graph-up-right"></i> Kategori Bazında Toplam Gösterim </h1>
+		<div class="box-tools pull-right">
+			<button data-widget="collapse" class="btn btn-primary btn-sm"><i class="ion ion-minus"></i></button>
+		</div>
+	</div>
+	<div class="box-body" style="display: none;">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<th><i class="ion ion-arrow-graph-up-right"></i> Kategori Bazında Toplam Gösterim </th>
+				<th class="center" width="85"><i title="Gösterim" class="ion-eye"></i></th>
+				<th class="center" width="85"><i title="R. Gösterim" class="ion-eye"></i></th>
+			</thead>
+			<tbody>
+				<tr>
+					<td><b>Toplam</b></td>
+					
+					<td class="right">{{read_total['view']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{read_total['real_view']|number_format(0, ',', '.')}}</td>
+				</tr>
+				{% for key, items in cat_name %}
+				<tr>
+					<td>{{cat_name[key]}}</td>
+					<td class="right">{{read_total_cat[key]['view']|number_format(0, ',', '.')}}</td>
+					<td class="right">{{read_total_cat[key]['real_view']|number_format(0, ',', '.')}}</td>
+				</tr>		
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="box box-solid box-n collapsed-box">
+	<div class="box-header">
+		<h1 class="box-title"><i class="ion ion-pie-graph"></i> Kategori Bazında Ortalama Gösterim </h1>
+		<div class="box-tools pull-right">
+			<button data-widget="collapse" class="btn btn-primary btn-sm"><i class="ion ion-minus"></i></button>
+		</div>
+	</div>
+	<div class="box-body" style="display: none;">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<th><i class="ion ion-pie-graph"></i> Kategori Bazında Ortalama Gösterim </th>
+				<th class="center" width="85"><i title="Gösterim" class="ion-eye"></i></th>
+				<th class="center" width="85"><i title="R. Gösterim" class="ion-eye"></i></th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Toplam</td>
+					<td class="right">{{ortalama['view']|number_format(2, ',', '.')}}</td>
+					<td class="right">{{ortalama['real_view']|number_format(2, ',', '.')}}</td>
+				</tr>
+				{% for key, items in cat_name %}
+				<tr>
+					<td>{{cat_name[key]}}</td>
+					<td class="right">{{ortalama_cat[key]['view']|number_format(2, ',', '.')}}</td>
+					<td class="right">{{ortalama_cat[key]['real_view']|number_format(2, ',', '.')}}</td>
+				</tr>		
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>

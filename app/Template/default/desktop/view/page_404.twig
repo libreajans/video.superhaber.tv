@@ -1,0 +1,85 @@
+<div style="text-align:center; color:#23232c; font-size:24px; font-weight:600; line-height:26px; padding:10px 0;">
+	<br/>{404}
+	<br/>Bağlantı hatalı veya yayından kaldırılmış!
+</div>
+
+<div id="video-header">
+	<ul>
+		<li class="video-manset">
+			<a href="{{index_manset[0].content_url}}">
+				<figure class="big-video-header-image">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{index_manset[0].content_image_url}}"
+						alt="{{index_manset[0].content_title}}"
+						width="650" height="370"
+					/>
+					<figcaption class="big-video-header-image-caption">
+						<div class="big-caption-play"></div>
+						<div class="big-caption-title">{{index_manset[0].content_title}}</div>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+		<li>
+			<a href="{{index_manset[1].content_url}}">
+				<figure class="video-manset-image">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{index_manset[1].content_image_url}}"
+						alt="{{index_manset[1].content_title}}"
+						width="320" height="182"
+					/>
+					<figcaption class="video-manset-image-caption">
+						<div class="video-manset-play"></div>
+						<div class="video-manset-title">{{index_manset[1].content_title}}</div>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+		<li>
+				<a href="{{index_manset[2].content_url}}">
+				<figure class="video-manset-image">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{index_manset[2].content_image_url}}"
+						alt="{{index_manset[2].content_title}}"
+						width="320" height="182"
+					/>
+					<figcaption class="video-manset-image-caption">
+						<div class="video-manset-play"></div>
+						<div class="video-manset-title">{{index_manset[2].content_title}}</div>
+					</figcaption>
+				</figure>
+			</a>
+		</li>
+	</ul>
+</div>
+
+
+<main id="main-video-container">
+	<div class="videos-content">
+		<ul class="videos-box">
+			{% for i in 3..6 %}
+				<li>
+					<a href="{{index_manset[i].content_url}}">
+						<figure class="videos-box-image">
+							<img
+								src="{{G_IMGLINK_APP}}lazy.png"
+								data-src="{{index_manset[i].content_image_url}}"
+								alt="{{index_manset[i].content_title}}"
+								width="232" height="130"
+							/>
+							<figcaption class="videos-box-caption"></figcaption>
+						</figure>
+						<div class="videos-box-info">
+							<div class="videos-box-title">{{index_manset[i].content_title}}</div>
+							<div class="videos-box-watch">{{index_manset[i].content_view_f}} görüntülenme</div>
+							<div class="videos-box-date">{{index_manset[i].content_time_f}}</div>
+						</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</main>

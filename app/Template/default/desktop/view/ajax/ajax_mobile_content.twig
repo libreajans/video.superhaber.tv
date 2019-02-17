@@ -1,0 +1,9 @@
+{% for item in content_list %}
+	<li class="border-100">
+		<a href="{{item.content_url}}"
+		   title="{{item.content_title|striptags}}">
+			<img data-src="{{item.content_image_url}}" width="100%" height="auto" alt="{{item.content_title}}">
+			<h5 class="mobile-block-title">{{item.content_title}}</h5>
+		</a>
+	</li>
+{% endfor %}

@@ -1,0 +1,179 @@
+{% if content.content_duration > 0%}
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "VideoObject",
+			"name": "{{content.content_title}}",
+			"description": "{{content.content_text|striptags}}",
+			"thumbnailUrl": "{{content.content_image_url}}",
+			"uploadDate": "{{content.content_time|date("Y-m-d")}}T{{content.content_time|date("H:i:s+02:00")}}",
+			"duration": "{{content_duration}}",
+			"contentUrl": "{{content.content_url}}",
+			"embedUrl": "{{content.content_embed_url}}",
+			"interactionCount": "{{content.content_view}}"
+		}
+	</script>
+
+	<script type="application/ld+json">
+	{
+	  "@context": "http://schema.org",
+	  "@type": "BreadcrumbList",
+	  "itemListElement": [{
+		"@type": "ListItem",
+		"position": 1,
+		"item": {
+		  "@id": "{{LINK_INDEX}}",
+		  "name": "Ana Sayfa"
+		}
+	  },{
+		"@type": "ListItem",
+		"position": 2,
+		"item": {
+		  "@id": "{{cat_url[content.content_cat]}}",
+		  "name": "{{cat_name[content.content_cat]}}"
+		}
+	  },{
+		"@type": "ListItem",
+		"position": 3,
+		"item": {
+		  "@id": "{{site_canonical}}",
+		  "name": "{{content.content_title}}"
+		}
+	  }]
+	}
+	</script>
+
+{% endif %}
+
+   <main id="main-video-container">
+	   <div class="breadcrumbs">
+		   <ul>
+			   <li><a href="{{ LINK_INDEX }}">Anasayfa &rsaquo; </a></li>
+			   <li><a href="{{cat_url[content.content_cat]}}">{{cat_name[content.content_cat]}} &rsaquo;</a></li>
+			   <li>{{ content.content_title }} </li>
+		   </ul>
+	   </div>
+		<div id="section-left">
+			<div id="detail-video">
+				<iframe
+					src="{{content.content_embed_url}}/650x370/"
+					width="650"
+					height="370"
+					scrolling="no"
+					frameborder="0"
+					marginheight="0"
+					marginwidth="0"
+					allowfullscreen
+					webkitallowfullscreen
+					mozallowfullscreen
+					oallowfullscreen
+					msallowfullscreen>
+				</iframe>
+			</div>
+
+			<div id="detail-video-text">
+				<h3 class="detail-video-title">
+					{% if admin == 1 %}
+						<a title="İçeriği Düzenle"  href="{{link_edit}}"> # </a>
+					{% endif %}
+					{{content.content_title}}
+				</h3>
+				<div class="detail-video-spot">{{content_text|raw}}</div>
+				<div class="detail-video-caption">
+					<div class="detail-video-date">{{content.content_time|date("d.m.Y")}} tarihinde yayınlandı</div>
+					<div class="detail-video-watch">{{content.content_view_f}} görüntülenme</div>
+				</div>
+				<ul class="detail-video-tags">
+					<li><strong>Etiketler : </strong></li>
+					<li>
+						<a title="{{content.content_cat_name}}" href="{{content.content_cat_url}}">{{content.content_cat_name}}</a>
+					</li>
+					{% if array_tags[0] != '' %}
+						{% for item in array_tags %}
+							<li><a title="{{item}}" href="{{LINK_TAGS}}{{item|url_encode}}">{{item}}</a></li>
+						{% endfor %}
+					{% endif %}
+				</ul>
+
+			</div>
+			<div class="dateil-video-share">
+				<a target="_blank" rel="external nofollow noopener noreferrer" href="https://twitter.com/intent/tweet?hashtags={{social_media.twitter_tag}}&amp;original_referer={{site_canonical}}&amp;text={{content.content_title|url_encode}}&amp;tw_p=tweetbutton&amp;url={{site_canonical}}&amp;via={{social_media.twitter_name}}">
+					<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{G_IMGLINK_APP}}icons/tweetle.png"
+						style="float:left; margin-right: 10px"
+						width="71"
+						height="20"
+					/>
+				</a>
+				<iframe
+						frameborder="0"
+						height="20"
+						allowtransparency="true"
+						scrolling="no"
+						src="http://www.facebook.com/plugins/like.php?href={{site_canonical}}&amp;width=165&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=21">
+				</iframe>
+			</div>
+			{% if commented != 1 %}
+				{% if content.content_comment_status == 1 %}
+					<div class="dateil-comment-write">
+						<div class="detail-title">Yorum Yap</div>
+						<form method="post" action="{{site_canonical}}" name="form1" id="form1">
+							<input type="hidden" name="comment_add" value="1"/>
+							<textarea name="yorum" class="comment-text" placeholder="Yorumunuz"></textarea>
+							<input type="text" name="isim" class="comment-input" placeholder="Adınız Soyadınız"/>
+							<button class="comment-button" type="submit">Yorum Ekle</button>
+						</form>
+					</div>
+				{% else %}
+					<div class="detail-message-box">Bu içerik yorumlara kapalıdır.</div>
+				{% endif %}
+			{% else %}
+				<div class="detail-message-box">Yorumunuz kayıt altına alınmıştır.</div>
+			{% endif %}
+
+			{% if comment_list|length != 0 %}
+				<div class="detail-comment" id="comment">
+					<div class="detail-title">Yorumlar</div>
+					<ul class="detail-comment-list">
+						{% for item in comment_list %}
+							<li class="comment-user-bg-0">
+								<div class="comment-text">{{item.comment_text|raw}}</div>
+								<div class="comment-user">
+									{{item.comment_author}} -
+									<span>{{item.create_time|date("Y.m.d H:i")}}</span>
+									{% if admin == 1 %}
+										<a title="Yorumu Düzenle" style="float:right; margin-left:20px; color:maroon;" href="{{link_comment_edit}}{{item.comment_id}}">#</a>
+									{% endif %}
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+		<aside id="aside-right">
+			<div class="related-title">Benzer Videolar</div>
+			{% if content_benzer_list|length > 0 %}
+				<ul class="other-videos">
+					{% for item in content_benzer_list %}
+					<li>
+						<a href="{{item.content_url}}">
+							<figure class="other-videos-image">
+								<img
+									src="{{item.content_thumb_url}}"
+									alt="{{item.content_title}}"
+									width="150" height="auto"
+								/>
+								<div class="other-videos-caption"></div>
+							</figure>
+							<div class="other-videos-title">{{item.content_title}}</div>
+							<span class="other-videos-watch">{{item.content_view_f}} görüntülenme</span>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+
+		</aside>
+	</main>

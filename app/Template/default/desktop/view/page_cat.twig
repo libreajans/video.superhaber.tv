@@ -1,0 +1,12 @@
+<main id="main-video-container">
+	<div class="videos-content">
+		<div class="content-title"><span class="cat-{{id}}">{{cat_name[id]}}</span></div>
+		<ul class="videos-box" id="results">
+			{%include "ajax/ajax_block_content.twig" %}
+		</ul>
+
+	</div>
+</main>
+{%include "ajax/ajax_block_load.twig" with {type:"cat"}%}
+
+<div id="loadMore" class="load-more"><img width="21" height="11" src="{{G_IMGLINK_APP}}more.png" alt="Devamını Gör"/></div>

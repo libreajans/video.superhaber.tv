@@ -1,0 +1,38 @@
+<?xml-stylesheet type="text/xsl" href="{{SITELINK}}sitemap.xsl"?>
+<urlset 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+	{% for item in content %}
+	<url>
+		<loc>{{item.content_url}}</loc>
+		<lastmod>{{item.content_date}}T{{item.content_hours}}+02:00</lastmod>
+		{% if type == 0 %}<changefreq>weekly</changefreq>{% endif %}
+		{% if type == 1 %}<changefreq>daily</changefreq>{% endif %}
+		<priority>1.0</priority>
+		{% if image == 1 %}
+			<image:image>
+				<image:loc>{{item.content_image_url}}</image:loc>
+				<image:caption><![CDATA[{{item.content_title}}]]></image:caption>
+			</image:image>
+		{% endif %}
+	</url>
+	{% endfor %}
+	{% if type == 0 %}
+		<url><loc>{{LINK_INDEX}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[201]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[202]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[203]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[204]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[205]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[206]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[207]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[208]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[209]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[210]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[211]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+		<url><loc>{{cat_url[212]}}</loc><lastmod>{{tarih}}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+	{% endif %}
+</urlset>

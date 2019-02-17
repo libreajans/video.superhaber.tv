@@ -1,0 +1,42 @@
+<div style="text-align:center; color:#23232c; font-size:20px; font-weight:300; line-height:22px; padding:10px 0 20px 0;">
+	<br/>Bağlantı hatalı veya yayından kaldırılmış!
+</div>
+
+<div class="mobile-main-headline">
+	<ul class="mobile-main-headline-list" id="mobile-headline-slider">
+		{% for item in index_manset_main %}
+			<li>
+				<a
+					href="{{item.content_url}}"
+					title="{{item.content_title}}">
+					<figure class="mobile-main-headline-list-image">
+						<img
+							src="{{item.content_image_url}}"
+							alt="{{item.content_title}}"
+							width="100%" height="auto"
+						/>
+					</figure>
+					<span class="mobile-main-headline-list-icon"></span>
+					<div class="mobile-main-headline-list-title-mask">
+						<div class="mobile-main-headline-list-title">
+							{{item.content_title|raw}}
+						</div>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="mobile-main-headline-pager">
+		<ul class="mobile-main-headline-pager-list" id="mobile-headline-pager">
+			{% for key, item in index_manset_main %}
+				<li>
+					<a
+							href="{{item.content_url}}"
+							title="{{item.content_title}}">
+						{{ key+1 }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>

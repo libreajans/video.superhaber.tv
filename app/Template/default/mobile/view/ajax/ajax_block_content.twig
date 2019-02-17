@@ -1,0 +1,18 @@
+{% for item in content_list %}
+	<li class="border-100">
+		<a href="{{item.content_url}}"
+		   title="{{item.content_title}}">
+			<figure class="mobile-block-image">
+				<img
+						src="{{G_IMGLINK_APP}}lazy.png"
+						data-src="{{item.content_thumb_url}}"
+						alt="{{item.content_title}}"
+						width="100%" height="auto"
+				/>
+			</figure>
+			<div class="mobile-block-title">{{item.content_title}}</div>
+			<div class="mobile-block-view">{{ item.content_view_f }} görüntülenme</div>
+			<div class="mobile-block-date">{{ item.content_time_f }}</div>
+		</a>
+	</li>
+{% endfor %}

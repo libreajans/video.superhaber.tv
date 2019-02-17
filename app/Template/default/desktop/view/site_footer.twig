@@ -1,0 +1,55 @@
+   <footer>
+		<div class="grid-12">
+			<div class="footer-logo">
+				<figure class="footer-logo-image">
+					<img src="{{G_IMGLINK_APP}}logo.png" width="200" alt="Super Video">
+				</figure>
+				<ul class="footer-logo-list">
+					<li>
+						<a target="_blank" rel="noopener noreferrer external" title="Facebook" href="{{social_media.facebook}}">
+							<img src="{{G_IMGLINK_APP}}lazy.png" width="30" height="30" alt="Facebook" data-src="{{G_IMGLINK_APP}}social/facebook.png"/>
+						</a>
+					</li>
+					<li>
+						<a target="_blank" rel="noopener noreferrer external" title="Twitter" href="{{social_media.twitter}}">
+							<img src="{{G_IMGLINK_APP}}lazy.png" width="30" height="30" alt="Twitter" data-src="{{G_IMGLINK_APP}}social/twitter.png"/>
+						</a>
+					</li>
+					<li>
+						<a target="_blank" rel="noopener noreferrer external" title="Google+" href="{{social_media.google}}">
+							<img src="{{G_IMGLINK_APP}}lazy.png" width="30" height="30" alt="Google+" data-src="{{G_IMGLINK_APP}}social/google+.png"/>
+						</a>
+					</li>
+					<li>
+						<a target="_blank" rel="noopener noreferrer external" title="Instagram" href="{{social_media.instagram}}">
+							<img src="{{G_IMGLINK_APP}}lazy.png" width="30" height="30" alt="Instagram" data-src="{{G_IMGLINK_APP}}social/instagram.png"/>
+						</a>
+					</li>
+					<li>
+						<a target="_blank" rel="noopener noreferrer external" title="RSS" href="{{social_media.feed}}">
+							<img src="{{G_IMGLINK_APP}}lazy.png" width="30" height="30" alt="RSS" data-src="{{G_IMGLINK_APP}}social/rss.png"/>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="footer-block">
+				<ul class="footer-list">
+					{% for key in cat_name|keys %}
+						<li><a target="_blank" rel="noopener noreferrer" href="{{cat_url[key]}}" title="{{cat_name[key]}}">{{cat_name[key]}}</a></li>
+					{% endfor %}
+					{% for key in page_name|keys %}
+						<li><a target="_blank" rel="noopener noreferrer external" href="{{page_url[key]}}" title="{{page_name[key]}}">{{page_name[key]}}</a></li>
+					{% endfor %}
+					{% if admin == 1 %}
+						<li><a title="Yönetim Paneli" href="{{LINK_ACP}}">Yönetim Paneli</a></li>
+					{% endif %}
+				</ul>
+			</div>
+			<div class="footer_site_link">
+				Uyarı: SüperHaber Video Video sitesinde telif hakkı bulunan ya da Türk Ceza Kanunu tarafınca yasak kabul edilen her türlü fikir, resim, film, müzik, video ve eserin paylaşımı yasaktır. Bu tür paylaşımların yapılması durumunda her türlü hukuki ve cezai sorumluluk paylaşımı yapan üyeye aittir. Böyle bir durumda SüperHaber Video Video hiç bir sorumluluk taşımamaktadır. Ancak SüperHaber Video böyle bir şikayet, ihbar, uyarı aldığında ya da bu tür paylaşımları farkettiğinde bu paylaşımları kaldırmakla, üye bilgilerini saklamakla ve gerektiğinde yetkili mercilere bildirmekle yükümlüdür. Sitemize üye olan tüm kullanıcılar bu kuraları kabul etmiş sayılır.
+			</div>
+
+		</div>
+	</footer>
+</body>
+</html>

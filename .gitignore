@@ -1,0 +1,9 @@
+cache/
+.idea/
+assets/css/main.css
+assets/css/mobile.css
+assets/css/app.css
+assets/js/min.main.js
+assets/js/min.mobile.js
+assets/uploads/
+assets/uploads_thumbs/

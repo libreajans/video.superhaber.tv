@@ -1,0 +1,11 @@
+<div class="hy_container" style="margin-top: 15px">
+	<div class="mobile-title"><span class="cat-{{id}}">{{cat_name[id]}}</span></div>
+	<div class="news-content">
+		<ul class="mobile-block" id="results">
+			{%include "ajax/ajax_mobile_content.twig" %}
+		</ul>
+	</div>
+</div>
+{%include "ajax/ajax_block_load.twig" with {type:"mobile_cat"}%}
+<div id="loadMore" class="load-more"><img width="21" height="11" src="{{G_IMGLINK_APP}}more.png" alt="Devamını Gör" /></div>
+

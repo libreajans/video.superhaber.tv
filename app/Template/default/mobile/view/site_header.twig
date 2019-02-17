@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<!--
+Yazılım: İber Medya
+Tasarım: İber Medya
+Copyright: İber Medya & SuperHaber.tv
+-->
+<html lang="tr">
+	<head>
+		<!-- Uyumluluk kipini kapatmaya zorla -->
+		<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"><![endif]-->
+		<!--[if IE 9]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"><![endif]-->
+		<!--[if IE 10]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"><![endif]-->
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+		<meta charset="UTF-8"/>
+		<meta name="robots" content="index, follow"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		{#---[+]--- google analistik kodu ---#}
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-53462249-1', 'superhaber.tv');
+			ga('send', 'pageview');
+		</script>
+		{#---[-]--- google analistik kodu ---#}
+
+		{#---[+]--- Facebook Open Graph API ---#}
+		<meta property="og:title" content="{{content_metatitle}}"/>
+		<meta property="og:image" content="{{content.content_image_url}}"/>
+		<meta property="og:site_name" content="{{L.pIndex_Company}}"/>
+		<meta property="og:description" content="{{content_metadesc}}"/>
+		<meta property="og:url" content="{{site_canonical}}"/>
+		{#---[-]--- Facebook Open Graph API ---#}
+
+		{#---[+]--- Twitter API ---#}
+		<meta name="twitter:card" content="summary_large_image"/>
+		<meta name="twitter:site" content="@{{social_media.twitter_name}}"/>
+		<meta name="twitter:title" content="{{content_metatitle}}"/>
+		<meta name="twitter:description" content="{{content_metadesc}}"/>
+		<meta name="twitter:image:src" content="{{content_metaimage}}"/>
+		<meta name="twitter:url" content="{{site_canonical}}"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		{#---[+]--- Twitter API ---#}
+
+		<meta name="keywords" content="{% if content_metatags != "" %}{{content_metatags}},{%endif%} {{site_keywords}}"/>
+		<meta name="description" content="{{content_metadesc}}"/>
+
+		{#---[+]--- Favicon ---#}
+		<link rel="dns-prefetch" href="http://cdn-video.superhaber.tv"/>
+		<link rel="shortcut icon" type="image/png" href="{{G_IMGLINK_APP}}favicon.png" sizes="32x32"/>
+		<link rel="canonical" href="{{site_canonical}}"/>
+		<link rel="publisher" href="{{social_media.google}}"/>
+		{#---[-]--- Favicon ---#}
+
+		{#---[+]--- RSS Linkleri ---#}
+		<link rel="alternate" type="application/rss+xml" title="{{L.pIndex_Company}} Video RSS Beslemeleri" href="{{LINK_FEED}}"/>
+		{#---[-]--- RSS Linkleri ---#}
+
+		{#---[+]--- önce css ---#}
+		<link rel="stylesheet" media="screen" href="{{G_CSSLINK}}vendors/util.carousel.css"/>
+		<link rel="stylesheet" media="screen" href="{{G_CSSLINK}}mobile_8.css"/>
+		{#---[-]--- önce css ---#}
+
+		{#---[+]--- sonra js ---#}
+		<script src="{{G_JSLINK}}vendors/jquery.min.js"></script>
+		{#+++ kullanıldığından emin değilim #}
+ 		<script src="{{G_JSLINK}}vendors/jquery-ui.js"></script>
+ 		<script src="{{G_JSLINK}}vendors/jquery.mobile.js"></script>
+		{#--- kullanıldığından emin değilim #}
+		<script src="{{G_JSLINK}}vendors/jquery.lazyloadxt.min.js"></script>
+		<script src="{{G_JSLINK}}vendors/jquery.utilcarousel.min.js"></script>
+		<script src="{{G_JSLINK}}mobile_8.js"></script>
+		{#---[-]--- sonra js ---#}
+
+		{#---[+]--- Mikro Data ---#}
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Organization",
+			"url": "{{LINK_INDEX}}",
+			"logo": "{{G_IMGLINK_APP}}logo_sh.png"
+		}
+		</script>
+
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "WebSite",
+			"name" : "Video {{L.pIndex_Company}}",
+			"alternateName" : "video.superhaber.tv",
+			"url": "{{LINK_INDEX}}",
+			"sameAs" : [
+				"{{social_media.facebook}}",
+				"{{social_media.twitter}}",
+				"{{social_media.google}}",
+				"{{social_media.instagram}}"
+			],
+			"potentialAction":
+			{
+				"@type": "SearchAction",
+				"target": "{{LINK_SEARCH}}?search={search}",
+				"query-input": {
+					"@type": "PropertyValueSpecification",
+					"valueRequired": true,
+					"valueMaxlength": 100,
+					"valueName": "search"
+				}
+			}
+		}
+		</script>
+		{#---[-]--- Mikro Data ---#}
+
+		<title>{{site_title}}</title>
+	</head>
+	<body class="cbp-spmenu-push">
+		{% if sayfaadi == 'index' %}
+			<h1 class="hideMe">{{L.pIndex_Company}}</h1>
+			<h2 class="hideMe">{{L.pIndex_CompanyDesc}}</h2>
+		{% else %}
+			<h1 class="hideMe">{{content_metatitle}}</h1>
+			<h2 class="hideMe">{{content_metadesc}}</h2>
+		{% endif %}
+		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<div class="mobile-menu-title"><img src="{{G_IMGLINK_APP}}logo.png" width="177" height="35" alt="Super Video "></div>
+			<div class="mobile-search">
+				<form action="{{LINK_SEARCH}}" method="post">
+					<input type="search" name="search" class="mobile-search-input" placeholder="Video ara...">
+				</form>
+			</div>
+
+			<ul id="kaynak-menu">
+				<li{% if sayfaadi == 'index' %} class="active" {% endif %}>
+					<a title="Ana Sayfa" href="{{LINK_INDEX}}">Anasayfa</a>
+				</li>
+				{% for key in cat_name|keys %}
+				<li><a href="{{cat_url[key]}}" title="{{cat_name[key]}}">{{cat_name[key]}}</a></li>
+				{% endfor %}
+				{% for key in page_name|keys %}
+					<li><a rel="external" href="{{page_url[key]}}" title="{{page_name[key]}}">{{page_name[key]}}</a></li>
+				{% endfor %}
+			</ul>
+		</nav>
+		<header>
+			<div id="open-side-menu" class="c-hamburger c-hamburger--htx">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="logo">
+				<a title="Ana Sayfa" href="{{LINK_INDEX}}">
+					<img src="{{G_IMGLINK_APP}}logo.png" height="40" width="203" alt="Super video">
+				</a>
+				{% if sayfa_title != '' %}
+					<div class="category-title">
+						{{sayfa_title}}
+					</div>
+				{% endif %}
+			</div>
+		</header>
+

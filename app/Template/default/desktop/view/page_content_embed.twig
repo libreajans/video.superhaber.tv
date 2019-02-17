@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<!--
+Yazılım: İber Medya
+Tasarım: İber Medya
+Copyright: İber Medya & SuperHaber.tv
+-->
+<html lang="tr">
+	<head>
+		<!-- Uyumluluk kipini kapatmaya zorla -->
+		<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"><![endif]-->
+		<!--[if IE 9]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"><![endif]-->
+		<!--[if IE 10]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"><![endif]-->
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+		<meta charset="UTF-8">
+		<meta name="robots" content="noindex, nofollow">
+		<link rel="dns-prefetch" href="http://cdn-video.superhaber.tv"/>
+
+		{#---[+]--- google analistik kodu ---#}
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-53462249-1', 'superhaber.tv');
+			ga('send', 'pageview');
+		</script>
+		{#---[-]--- google analistik kodu ---#}
+
+		<title>{{site_title}}</title>
+	</head>
+	<body style="margin:0; padding:0">
+
+	{# Reklam gösterimi kapatılmışsa kendi playerımız ile gösterelim #}
+	{% if content.content_ads_status == 0 %}
+		{# +++ BİZİM PLAYER ----------- #}
+			<link rel="stylesheet" media="screen" href="{{G_ASSETSLINK}}player/elite.css"/>
+			<link rel="stylesheet" media="screen" href="{{G_ASSETSLINK}}player/font-awesome.css"/>
+			<link rel="stylesheet" media="screen" href="{{G_ASSETSLINK}}player/jquery.mCustomScrollbar.css"/>
+			<script src="{{G_ASSETSLINK}}player/jquery.min.js"></script>
+			<script src="{{G_ASSETSLINK}}player/froogaloop.js"></script>
+			<script src="{{G_ASSETSLINK}}player/jquery.mCustomScrollbar.js"></script>
+			<script src="{{G_ASSETSLINK}}player/THREEx.FullScreen.js"></script>
+			<script src="{{G_ASSETSLINK}}player/videoPlayer.js"></script>
+			<script src="{{G_ASSETSLINK}}player/Playlist.js" ></script>
+			<script>
+			$(document).ready(function($)
+			{
+				videoPlayer = $("#Elite_video_player").Video(
+				{
+					//ALL PLUGIN OPTIONS
+					autohideControls		:1,									//autohide HTML5 player controls
+					hideControlsOnMouseOut	:"yes",								//hide HTML5 player controls on mouse out of the player: "Yes","No"
+					videoPlayerWidth		:{{width}},					   		//fixed total player width
+					videoPlayerHeight		:{{height}},						//fixed total player height
+					responsive				:false,								//this option will overwrite above videoPlayerWidth/videoPlayerHeight and set player to fit your div (parent) container: true/false
+					autoplay				:false,								//autoplay when webpage loads: true/false
+					playlist				:"Off",								//choose playlist type: "Right playlist", "Off"
+					colorAccent				:"#bf0000",							//plugin colors accent (hexadecimal or RGB value - http://www.colorpicker.com/)
+					videoPlayerShadow		:"effect1",							//choose player shadow:  "effect1" , "effect2", "effect3", "effect4", "effect5", "effect6", "off"
+					onFinish				:"Stop video",						//"Play next video","Restart video", "Stop video",
+					fullscreen				:"Fullscreen native",				//choose fullscreen type: "Fullscreen native","Fullscreen browser"
+					loadRandomVideoOnStart	:"No",								//choose to load random video when webpage loads: "Yes", "No"
+					shuffle					:"No",								//choose to shuffle videos when playing one after another: "Yes", "No" (shuffle button enabled/disabled on start)
+					nowPlayingText			:"No",								//enable disable now playing title: "Yes","No"
+					infoShow				:"No",								//enable/disable info option: "Yes","No"
+					logoShow				:"No",								//"Yes","No"
+					rightClickMenu			:false,								//enable/disable right click over HTML5 player: true/false
+					hideVideoSource			:true,								//option to hide self hosted video sources (to prevent users from download/steal your videos): true/false
+					showAllControls			:true,								//enable/disable all HTML5 player controls: true/false
+					allowSkipAd				:true,								//enable/disable "Skip advertisement" option: true/false
+					shareShow				:"Yes",								//enable/disable all share options: "Yes","No"
+					facebookShow			:"Yes",								//enable/disable facebook option individually: "Yes","No"
+					twitterShow				:"Yes",								//enable/disable twitter option individually: "Yes","No"
+					mailShow				:"No",								//enable/disable mail option individually: "Yes","No"
+					//embed değerleri
+					embedShow				:"Yes",								//enable/disable embed option: "Yes","No"
+					embedCodeW				:"{{width}}",						//embed player code width
+					embedCodeH				:"{{height}}",						//embed player code height
+					embedCodeSrc			:"{{content.content_embed_url}}",	//path to your video player on server
+					embedShareLink			:"{{content.content_url}}",			//direct link to your site (or any other URL) you want to be "shared"
+					//facebook değerleri
+					facebookShareName		:"{{social_media.facebook_name}}",	//first parametar of facebook share in facebook feed dialog is title
+					facebookShareLink		:"{{content.content_url}}", 		//second parametar of facebook share in facebook feed dialog is link below title
+					facebookShareDescription:"{{content.content_title}}",		//third parametar of facebook share in facebook feed dialog is description below link
+					facebookSharePicture	:"{{content.content_image_url}}",	//fourth parametar in facebook feed dialog is picture on left side
+					//twitter değerleri
+					twitterText				:"{{content.content_title}}",		//first parametar of twitter share in twitter feed dialog is text
+					twitterLink				:"{{content.content_url}}",			//second parametar of twitter share in twitter feed dialog is link
+					twitterHashtags			:"{{social_media.twitter_tag}}",	//third parametar of twitter share in twitter feed dialog is hashtag
+					twitterVia				:"{{social_media.twitter_name}}",	//fourth parametar of twitter share in twitter feed dialog is via (@)
+					//gplus değerleri
+					googlePlus				:"{{content.content_url}}",			//share link over Google +
+					//görüntülenecek resim
+					posterImg				:"{{content.content_image_url}}",	//görüntülenecek resim
+					videos:
+					[
+						{
+							prerollAD		:"no",
+							preroll_mp4		:"",
+							prerollSkipTimer:0,
+							prerollGotoLink:"{{LINK_INDEX}}",
+							videoType		:"HTML5",
+							popupImg		:"{{G_ASSETSLINK}}assets/default/desktop/img/logo_sh.png",
+							popupAdShow		:"yes",
+							popupAdStartTime:"00:03",
+							popupAdEndTime	:"00:07",
+							popupAdGoToLink	:"http://codecanyon.net/",
+							description		:"Video description goes here.",
+							thumbImg		:"{{content.content_image_url}}",
+							info			:"Video info goes here.<br>This text can be <i>HTML formatted</i>",
+							title			:"{{content.content_title}}",
+							mp4				:"{{content.content_video_url}}",
+						}
+					]
+				});
+			});
+			</script>
+			<div id="Elite_video_player"></div>
+			{# --- BİZİM PLAYER ----------- #}
+		{% endif %}
+
+		{# Reklam gösterimi açık ise reklam player ile gösterelim #}
+		{% if content.content_ads_status == 1 %}
+			{# +++ REKLAM PLAYER ----------- #}
+			<script type="text/javascript" src="http://r.sascdn.com/video/config.js?nwid=1543"></script>
+			<script type="text/javascript" src="http://r.sascdn.com/video/controller.js?nwid=1543"></script>
+			<!-- Container div that will hold the targeted video player -->
+			<div id='myContainer'  style='background-color: #000000; position: relative; width: {{width}}px; height: {{height}}px'>
+			<!-- Use your own content files -->
+			<video
+				id="player"
+				style="width:{{width}}px; height: {{height}}px; padding: 0.01px"
+				controls
+				controlsList="nodownload"
+				poster="{{content.content_image_url}}">
+				<source type="video/mp4" src="{{content.content_video_url}}"/>
+			</video>
+			</div>
+
+			<script type="text/javascript">
+			var canLog = typeof console != 'undefined' && typeof console.log === 'function',
+			container = 'myContainer';
+			// Smart video object
+			var data =
+			{
+				id: container,
+				adData: {
+				// Please replace this with your own Smart AdServeridentifiers from Manage:
+				sas_siteid: '94371',
+				sas_pageid: '848630', // sas_pagename: 'linear',
+				sas_target: '',
+				sas_format_linears: '34986',
+				sas_format_overlays: '34986'
+				},
+				adRules: [{
+				duration_min: 0,
+				duration_max: -1,
+				data: {
+					prerolls: {
+					instances: 1
+					},
+					midrolls: {
+					instances: 1,
+					percents: [50],
+					interval: 0
+					},
+					postrolls: {
+					instances: 1
+					},
+					overlays: {
+					instances: 1,
+					interval: 0,
+					percents: [20]
+					}
+				}
+				}],
+				callbacks: {
+				adBegin: function(obj){
+					if (canLog){
+					console.log('An ad begun');
+					console.log('  * Controller ID: ' + obj.controllerID);
+					console.log('  * Break: ' + obj.state);
+					console.log('  * Break type: ' + obj.type);
+					}
+				},
+				adBreakBegin: function(state, controllerID){
+					if (canLog){
+					console.log('An ad break begun');
+					console.log('  * Break: ' + state);
+					console.log('  * Controller ID: ' + controllerID);
+					}
+				},
+				adBreakEnd: function(state, controllerID){
+					if (canLog){
+					console.log('An ad break ended');
+					console.log('  * Break: ' + state);
+					console.log('  * Controller ID: ' + controllerID);
+					}
+				},
+				adEnd: function(obj){
+					if (canLog){
+					console.log('An ad ended');
+					console.log('  * Controller ID: ' + obj.controllerID);
+					console.log('  * Break: ' + obj.state);
+					console.log('  * Break type: ' + obj.type);
+					}
+				},
+				contentEnd: function(obj){
+					if (canLog){
+					console.log('Video content ended');
+					console.log('  * Controller ID: ' + obj.controllerID);
+					}
+				},
+				videoEnd: function(obj){
+					if (canLog){
+					console.log('Video experience ended');
+					console.log('  * Controller ID: ' + obj.controllerID);
+					}
+				}
+				},
+				configuration: {
+				publisher: {
+					forceSkipDelay: true,
+					html5SeamlessFullscreen: true,
+					skipDelay: 1,
+					muteAdsAtStartup : false
+				}
+				},
+				contentData: {
+				sas_contentproviderid: 'testProviderID',
+				sas_contentid: 'testContentID'
+				},
+				contentPlayer: {
+				api: null
+				},
+				language: "EN"
+			}
+
+			// Registering the player
+			if(typeof sas != 'undefined' && typeof sas.video != 'undefined') {
+				sas.video.register(data);
+			}
+			</script>
+			{# +++ REKLAM PLAYER ----------- #}
+		{% endif %}
+	</body>
+</html>
